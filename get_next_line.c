@@ -6,7 +6,7 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 00:32:44 by test              #+#    #+#             */
-/*   Updated: 2022/06/07 15:03:48 by test             ###   ########.fr       */
+/*   Updated: 2022/06/07 16:18:16 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ char *get_next_line(int fd) {
 			return NULL;
 	}
 	res = ft_format(strage);
-	if (res != NULL)
-		strage = ft_newstrage(strage);
+	strage = ft_newstrage(strage);
 	return (res);
 }
 
@@ -66,7 +65,8 @@ static char *ft_read_buf(int fd, char *strage) {
 		return (NULL);
 	}
 	buf[read_size] = '\0';
-	strage = ft_newstrage(buf);
+	strage = ft_strdup(buf);
+	free(buf);
 	return (strage);
 }
 
@@ -87,7 +87,7 @@ static char *ft_newstrage(char *strage)
 	len = 0;
 	while (ft_strchr(ch, strage[len]) == NULL)
 		len++;
-	newstrage = ft_strdup(strage + len);
+	newstrage = ft_strdup(strage + len + (strage[len] == '\n'));
 	free(strage);
 	return (newstrage);
 }
