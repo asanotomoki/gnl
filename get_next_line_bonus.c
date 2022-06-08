@@ -6,18 +6,22 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 00:32:44 by test              #+#    #+#             */
-/*   Updated: 2022/06/08 15:14:59 by test             ###   ########.fr       */
+/*   Updated: 2022/06/08 16:35:20 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+static char	*ft_newstrage(char *strage);
+static char	*ft_read_buf(int fd, char *strage);
+char		*ft_format(char *strage);
 
 char	*get_next_line(int fd)
 {
 	static char	*strage[256];
 	char		*res;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= 256)
 		return (NULL);
 	strage[fd] = ft_read_buf(fd, strage[fd]);
 	if (strage[fd] == NULL)

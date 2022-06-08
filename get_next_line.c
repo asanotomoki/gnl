@@ -6,11 +6,15 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 00:32:44 by test              #+#    #+#             */
-/*   Updated: 2022/06/08 14:44:06 by test             ###   ########.fr       */
+/*   Updated: 2022/06/08 16:33:00 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*ft_newstrage(char *strage);
+static char	*ft_read_buf(int fd, char *strage);
+char		*ft_format(char *strage);
 
 char	*get_next_line(int fd)
 {
