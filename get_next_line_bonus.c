@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 00:32:44 by test              #+#    #+#             */
-/*   Updated: 2022/06/08 13:23:09 by test             ###   ########.fr       */
+/*   Updated: 2022/06/08 13:11:46 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
-
+# include "get_next_line_bonus.h"
 static char *ft_newstrage(char *strage);
 static char *ft_read_buf(int fd, char *strage);
 char *ft_format(char *strage);
 
 char *get_next_line(int fd) {
-	static char *strage;
+	static char *strage[256];
 	char 		*res;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	strage = ft_read_buf(fd, strage);
-	if (strage == NULL)
+	strage[fd] = ft_read_buf(fd, strage[fd]);
+	if (strage[fd] == NULL)
 		return NULL;
-	res = ft_format(strage);
-	strage = ft_newstrage(strage);
+	res = ft_format(strage[fd]);
+	strage[fd] = ft_newstrage(strage[fd]);
 	return (res);
 }
 
