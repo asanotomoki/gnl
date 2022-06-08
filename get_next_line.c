@@ -6,31 +6,29 @@
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 00:32:44 by test              #+#    #+#             */
-/*   Updated: 2022/06/08 13:23:09 by test             ###   ########.fr       */
+/*   Updated: 2022/06/08 14:44:06 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
 
-static char *ft_newstrage(char *strage);
-static char *ft_read_buf(int fd, char *strage);
-char *ft_format(char *strage);
-
-char *get_next_line(int fd) {
-	static char *strage;
-	char 		*res;
+char	*get_next_line(int fd)
+{
+	static char	*strage;
+	char		*res;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	strage = ft_read_buf(fd, strage);
 	if (strage == NULL)
-		return NULL;
+		return (NULL);
 	res = ft_format(strage);
 	strage = ft_newstrage(strage);
 	return (res);
 }
 
-static char *ft_read_buf(int fd, char *strage) {
+static char	*ft_read_buf(int fd, char *strage)
+{
 	char	*buf;
 	ssize_t	read_size;
 
@@ -56,12 +54,13 @@ static char *ft_read_buf(int fd, char *strage) {
 	return (strage);
 }
 
-char *ft_format(char *strage) {
-	char *ch;
-	char *res;
-	size_t len;
+char	*ft_format(char *strage)
+{
+	char	*ch;
+	char	*res;
+	size_t	len;
 
-	ch =  "\n";
+	ch = "\n";
 	len = 0;
 	while (!ft_strrchr(ch, strage[len]))
 		len++;
@@ -69,17 +68,17 @@ char *ft_format(char *strage) {
 		return (NULL);
 	len = len + 1 + (strage[len] == '\n');
 	res = (char *)malloc(sizeof(char) * len);
-	if (res == NULL) 
+	if (res == NULL)
 		return (NULL);
 	ft_strlcpy(res, strage, len);
 	return (res);
 }
 
-static char *ft_newstrage(char *strage)
+static char	*ft_newstrage(char *strage)
 {
-	char *newstrage;
-	char *ch;
-	size_t len;
+	char	*newstrage;
+	char	*ch;
+	size_t	len;
 
 	if (strage == NULL)
 		return (NULL);
@@ -88,7 +87,7 @@ static char *ft_newstrage(char *strage)
 		free(strage);
 		return (NULL);
 	}
-	ch =  "\n";
+	ch = "\n";
 	len = 0;
 	while (!ft_strrchr(ch, strage[len]))
 		len++;

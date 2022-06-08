@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: test <test@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 00:32:48 by test              #+#    #+#             */
-/*   Updated: 2022/06/08 12:05:07 by test             ###   ########.fr       */
+/*   Created: 2022/06/08 14:44:46 by test              #+#    #+#             */
+/*   Updated: 2022/06/08 15:11:03 by test             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -65,7 +65,7 @@ char	*ft_strdup(const char *s1)
 	return (t);
 }
 
-char	*ft_strjoin(char  *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*str;
 	size_t	s1_len;
@@ -83,7 +83,7 @@ char	*ft_strjoin(char  *s1, char const *s2)
 	if (str == NULL)
 		return (NULL);
 	ft_strlcpy(str, s1, s1_len + 1);
-	ft_strlcpy(str+s1_len, s2, s1_len + s2_len + 1);
+	ft_strlcpy(str + s1_len, s2, s1_len + s2_len + 1);
 	free(s1);
 	return (str);
 }
