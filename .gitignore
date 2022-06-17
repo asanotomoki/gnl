@@ -1,4 +1,5 @@
 *.o
 a.out
 main.c
-
+*.txt
+test2
